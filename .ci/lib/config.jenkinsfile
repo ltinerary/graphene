@@ -3,9 +3,12 @@ env.MAKEOPTS = '-j8'
 
 python_platlib = sh(returnStdout: true, script: '''python3 -c "
 import os, sysconfig
-print(sysconfig.get_path('platlib', vars={'platbase': os.environ['PREFIX']}))
+platlib = sysconfig.get_path('platlib', vars={'platbase': os.environ['PREFIX']})
+print(platlib, file=os.sys.stderr)
+print(platlib)
 "''').trim()
 env.PYTHONPATH = python_platlib + ':' + env.WORKSPACE + '/Scripts'
+sh 'echo "$PYTHONPATH"'
 
 env.RA_TLS_ALLOW_OUTDATED_TCB_INSECURE = '1'
 

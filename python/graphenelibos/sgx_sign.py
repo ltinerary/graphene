@@ -800,9 +800,12 @@ def make_depend(manifest, args):
     dependencies = set()
     for _, filename in get_trusted_files(manifest, check_exist=False, do_hash=False).values():
         dependencies.add(filename)
+    print('dependencies<1>={!r}'.format(dependencies), file=stderr)
     if args['libpal'] is not None:
         dependencies.add(args['libpal'])
+    print('dependencies<2>={!r}'.format(dependencies), file=stderr)
     dependencies.add(args['key'])
+    print('dependencies<3>={!r}'.format(dependencies), file=stderr)
 
     with open(output, 'w', encoding='UTF-8') as file:
         manifest_sgx = output

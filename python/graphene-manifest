@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
 import sys
+__import__('pprint').pprint(sys.path, stream=sys.stderr)
 from graphenelibos.manifest import main
 sys.exit(main())
